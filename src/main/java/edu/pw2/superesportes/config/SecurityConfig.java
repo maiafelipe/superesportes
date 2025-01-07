@@ -41,6 +41,11 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(
                 (authorize) -> authorize
+                        .anyRequest().permitAll()
+        );
+        /*http.csrf(AbstractHttpConfigurer::disable).
+                authorizeHttpRequests(
+                (authorize) -> authorize
                         .requestMatchers("/usuarios/cadastro").permitAll()
                         .requestMatchers("/usuarios/salvar").permitAll()
                         .anyRequest().authenticated()
@@ -50,7 +55,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/atletas")
                         .permitAll()
-        );
+        );*/
         return http.build();
     }
 }

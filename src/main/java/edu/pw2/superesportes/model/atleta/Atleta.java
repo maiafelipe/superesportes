@@ -1,10 +1,14 @@
 package edu.pw2.superesportes.model.atleta;
 
 
+import edu.pw2.superesportes.model.equipe.Equipe;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +21,10 @@ public class Atleta {
     private Integer idade;
     private Double peso;
     private Double altura;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_equipe")
+    private Equipe equipe;
 
     public Atleta() {}
 
@@ -87,6 +95,14 @@ public class Atleta {
 
     public void setAltura(Double altura) {
         this.altura = altura;
+    }
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
     }
 
     @Override

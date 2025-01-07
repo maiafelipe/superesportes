@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Equipe</title>
+</head>
+<body>
+    <h1>Formulário para Registro de uma equipe</h1>
+    <form action="/equipes" method="post">
+
+        <input th:if="${equipe != null}" type="hidden" name="_method" value="put">
+        <input type="hidden" name="id" th:value="${equipe?.id}">
+
+
+        <label>Nome: </label>
+        <input type="text" id="nome" name="nome" th:value="${equipe?.getNome()}"> <br>
+        <label>Local: </label>
+        <input type="text" id="local" name="local" th:value="${equipe?.getLocal()}"> <br>
+        <label>Membros da equipe: </label> <br>
+        <div th:each="atleta : ${atletas}">
+            <input type="checkbox" th:checked="${atleta.getEquipe() != null}"
+             th:id="${'membros'+atleta.getId()}" name="membros" 
+             th:value="${atleta.getId()}" th:text="${atleta.getNome()}"><br>
+        </div>
+        <input type="submit" value="enviar">
+    </form>
+
+    
+</body>
+</html>

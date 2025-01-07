@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipes Cadastrados</title>
+</head>
+<body>
+    <h1>Lista de Equipes</h1>
+    <a href="/logout">Logout</a><br>
+    <a href="/equipes/cadastro">Nova Equipe</a><br>
+    <table class="table table-sm">
+    <thead>
+        <tr>
+            <th>NOME</th>
+            <th>LOCAL</th>
+            <th>AÇÕES</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="equipe : ${equipes}">
+            <td th:text="${equipe.getNome()}"></td>
+            <td th:text="${equipe.getLocal()}"></td>
+            <td>
+                <form action="\equipes" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="id" th:value="${equipe.getId()}">
+                    <input type="submit" value="Deletar">
+                </form>
+                
+
+                <a th:href="@{/equipes/cadastro?id={id}(id=${equipe.getId()})}">Editar</a>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+    
+</body>
+</html>

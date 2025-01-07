@@ -5,5 +5,8 @@ CREATE TABLE atleta(
     idade int, 
     peso float,
     altura float,
+    id_equipe bigint,
     PRIMARY KEY(id)
 );
+
+
